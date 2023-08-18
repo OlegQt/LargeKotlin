@@ -17,7 +17,7 @@ class Tab1Fragment : Fragment() {
 
     private val vm by lazy { ViewModelProvider(this)[Tab1ViewModel::class.java] }
 
-    //private val handler = Handler(Looper.getMainLooper())
+    private var pauseTimerWhenFragmentOnPause:Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +36,11 @@ class Tab1Fragment : Fragment() {
 
         binding.btnStartTimer.setOnClickListener { vm.startTimer() }
 
+        binding.checkboxPauseControl.setOnCheckedChangeListener { compoundButton, isChecked ->
+            this.pauseTimerWhenFragmentOnPause = isChecked
+            //this.pauseTimerWhenFragmentOnPause = compoundButton.isChecked
+        }
+
         // Работа с ViewModel
         vm.timer.observe(viewLifecycleOwner){
             binding.txtTimer.text = it.toString()
@@ -44,7 +49,7 @@ class Tab1Fragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        vm.stopTimer()
+        if (pauseTimerWhenFragmentOnPause) vm.stopTimer()
 
     }
 
