@@ -31,8 +31,11 @@ class MainFragment : Fragment() {
 
         // Создание списка фрагментов
         val fragmentMap = mutableMapOf<String, Fragment>()
-        fragmentMap["A"] = Tab1Fragment()
-        fragmentMap["B"] = Tab1Fragment()
+        for(i in 1 until 5){
+            fragmentMap["tab$i"] = Tab1Fragment()
+        }
+        //fragmentMap["A"] = Tab1Fragment()
+        //fragmentMap["B"] = Tab1Fragment()
 
         // Инициализация адаптера для TabLayout и связь со списком фрагментов
         val adapter = FragmentAdapter(requireActivity(), fragmentList = fragmentMap.values.toList())
