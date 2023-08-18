@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.largekotlin.databinding.FragmentMainBinding
 import com.largekotlin.fragments.Tab1Fragment
 
@@ -27,10 +30,16 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val fragmentMap = mutableMapOf<String, Fragment>()
-        fragmentMap.put("A", Tab1Fragment())
-        for (i in 0 until 10) {
-            binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Tab $i"))
-        }
+
+        fragmentMap["A"] = Tab1Fragment()
+        fragmentMap["B"] = MainFragment()
+
+        val adapter = FragmentAdapter(requireActivity(), fragmentList = fragmentMap.values.toList())
+        binding.viewpagerHolder.adapter = adapter
+        TabLayoutMediator(binding.tabLayout,binding.viewpagerHolder){tab,pos ->
+            tab.text = fragmentMap.keys.elementAt(pos)
+        }.attach()
+
     }
 
     override fun onDestroy() {
@@ -41,5 +50,12 @@ class MainFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = MainFragment()
+    }
+
+
+    class FragmentAdapter(private val fragmentActivity: FragmentActivity, private val fragmentList:List<Fragment>):FragmentStateAdapter(fragmentActivity){
+        override fun getItemCount() = fragmentList.size
+        override fun createFragment(position: Int) = fragmentList.elementAt(position)
+
     }
 }
