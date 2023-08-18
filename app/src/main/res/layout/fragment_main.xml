@@ -10,11 +10,17 @@
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        app:tabMode="scrollable"
-        app:tabIndicatorColor="@color/teal_200"
-        app:tabIndicatorHeight="4dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        app:tabMode="scrollable"
+        app:tabIndicatorColor="?attr/colorSecondary"
+        app:tabRippleColor="?attr/colorPrimaryVariant"
+        android:background="?attr/colorOnPrimary"
+
+        app:tabIndicatorHeight="8dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
