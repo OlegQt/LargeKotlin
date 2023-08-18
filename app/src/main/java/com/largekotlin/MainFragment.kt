@@ -1,10 +1,10 @@
 package com.largekotlin
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -14,7 +14,7 @@ import com.largekotlin.fragments.Tab1Fragment
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
-    val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,16 +29,19 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Создание списка фрагментов
         val fragmentMap = mutableMapOf<String, Fragment>()
-
         fragmentMap["A"] = Tab1Fragment()
-        fragmentMap["B"] = MainFragment()
+        fragmentMap["B"] = Tab1Fragment()
 
+        // Инициализация адаптера для TabLayout и связь со списком фрагментов
         val adapter = FragmentAdapter(requireActivity(), fragmentList = fragmentMap.values.toList())
         binding.viewpagerHolder.adapter = adapter
         TabLayoutMediator(binding.tabLayout,binding.viewpagerHolder){tab,pos ->
             tab.text = fragmentMap.keys.elementAt(pos)
         }.attach()
+
+
 
     }
 
@@ -53,7 +56,7 @@ class MainFragment : Fragment() {
     }
 
 
-    class FragmentAdapter(private val fragmentActivity: FragmentActivity, private val fragmentList:List<Fragment>):FragmentStateAdapter(fragmentActivity){
+    class FragmentAdapter(fragmentActivity: FragmentActivity, private val fragmentList:List<Fragment>):FragmentStateAdapter(fragmentActivity){
         override fun getItemCount() = fragmentList.size
         override fun createFragment(position: Int) = fragmentList.elementAt(position)
 

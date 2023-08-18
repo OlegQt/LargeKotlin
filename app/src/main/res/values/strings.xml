@@ -2,4 +2,5 @@
     <string name="app_name">LargeKotlin</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab1_article">"Счетчик ниже должен работать непрерывно. При приостановке фрагмента счетчик должен приостанавливаться. Не должно наблюдаться замедлений в счетчике при выполнении других потоков"</string>
 </resources>

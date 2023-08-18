@@ -1,16 +1,23 @@
 package com.largekotlin.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.largekotlin.R
 import com.largekotlin.databinding.FragmentTab1Binding
+import com.largekotlin.viewmodels.Tab1ViewModel
 
 
 class Tab1Fragment : Fragment() {
     private var _binding:FragmentTab1Binding? = null
-    val binding get() = _binding!!
+    private val binding get() = _binding!!
+
+    private val vm by lazy { ViewModelProvider(this)[Tab1ViewModel::class.java] }
+
+    //private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,6 +27,25 @@ class Tab1Fragment : Fragment() {
 
         // Inflate the layout for this fragment
         return _binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.txtLbl.text = getString(R.string.tab1_article)
+
+        binding.btnStartTimer.setOnClickListener { vm.startTimer() }
+
+        // Работа с ViewModel
+        vm.timer.observe(viewLifecycleOwner){
+            binding.txtTimer.text = it.toString()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        vm.stopTimer()
+
     }
 
     override fun onDestroy() {
