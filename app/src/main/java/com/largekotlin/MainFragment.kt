@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.largekotlin.databinding.FragmentMainBinding
 import com.largekotlin.fragments.Tab1Fragment
+import com.largekotlin.fragments.Tab2Fragment
 
 
 class MainFragment : Fragment() {
@@ -31,11 +32,9 @@ class MainFragment : Fragment() {
 
         // Создание списка фрагментов
         val fragmentMap = mutableMapOf<String, Fragment>()
-        for(i in 1 until 5){
-            fragmentMap["tab$i"] = Tab1Fragment()
-        }
-        //fragmentMap["A"] = Tab1Fragment()
-        //fragmentMap["B"] = Tab1Fragment()
+
+        fragmentMap["Tab1"] = Tab1Fragment()
+        fragmentMap["Tab2"] = Tab2Fragment()
 
         // Инициализация адаптера для TabLayout и связь со списком фрагментов
         val adapter = FragmentAdapter(requireActivity(), fragmentList = fragmentMap.values.toList())
