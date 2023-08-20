@@ -33,8 +33,8 @@ class MainFragment : Fragment() {
         // Создание списка фрагментов
         val fragmentMap = mutableMapOf<String, Fragment>()
 
-        fragmentMap["Tab1"] = Tab1Fragment()
-        fragmentMap["Tab2"] = Tab2Fragment()
+        fragmentMap["Thread"] = Tab1Fragment()
+        fragmentMap["RxJava"] = Tab2Fragment()
 
         // Инициализация адаптера для TabLayout и связь со списком фрагментов
         val adapter = FragmentAdapter(requireActivity(), fragmentList = fragmentMap.values.toList())
@@ -43,7 +43,8 @@ class MainFragment : Fragment() {
             tab.text = fragmentMap.keys.elementAt(pos)
         }.attach()
 
-
+        // Go to second Tab
+        binding.tabLayout.selectTab(binding.tabLayout.getTabAt(1))
 
     }
 
@@ -58,7 +59,7 @@ class MainFragment : Fragment() {
     }
 
 
-    class FragmentAdapter(fragmentActivity: FragmentActivity, private val fragmentList:List<Fragment>):FragmentStateAdapter(fragmentActivity){
+    private inner class FragmentAdapter(fragmentActivity: FragmentActivity, private val fragmentList:List<Fragment>):FragmentStateAdapter(fragmentActivity){
         override fun getItemCount() = fragmentList.size
         override fun createFragment(position: Int) = fragmentList.elementAt(position)
 

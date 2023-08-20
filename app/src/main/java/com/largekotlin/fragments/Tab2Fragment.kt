@@ -1,15 +1,13 @@
 package com.largekotlin.fragments
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.largekotlin.R
-import com.largekotlin.databinding.FragmentTab1Binding
 import com.largekotlin.databinding.FragmentTab2Binding
-import com.largekotlin.viewmodels.Tab1ViewModel
 import com.largekotlin.viewmodels.Tab2ViewModel
 
 
@@ -31,6 +29,14 @@ class Tab2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        vm.txtInput.observe(viewLifecycleOwner){
+            binding.txtInput.text = it
+        }
+
+        vm.txtColor.observe(viewLifecycleOwner){color ->
+            binding.txtInput.setBackgroundColor(color)
+        }
 
     }
 
