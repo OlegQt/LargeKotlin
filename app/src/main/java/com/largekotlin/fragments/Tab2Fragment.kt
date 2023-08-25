@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.largekotlin.databinding.FragmentTab2Binding
+import com.largekotlin.util.MessageProvider
 import com.largekotlin.viewmodels.Tab2ViewModel
 
 
@@ -22,6 +23,18 @@ class Tab2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTab2Binding.inflate(inflater,container,false)
+
+        binding.btnStandardRetrofit.setOnClickListener {
+            (requireActivity() as MessageProvider).showMessage("Standard retrofit")
+        }
+
+        binding.btnRxjavaRetrofit .setOnClickListener {
+            (requireActivity() as MessageProvider).showMessage("JavaRx retrofit")
+        }
+
+        binding.btnStandardObservable.setOnClickListener { vm.makeStandardObservable() }
+
+        binding.btnTimerObservable.setOnClickListener { vm.makeTimerObservable() }
 
         // Inflate the layout for this fragment
         return _binding?.root

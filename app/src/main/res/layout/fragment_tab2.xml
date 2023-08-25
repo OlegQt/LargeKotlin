@@ -4,18 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="12dp"
     tools:context=".MainFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/txt_input"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:padding="12dp"
+        android:layout_height="0dp"
 
         android:enabled="true"
-        android:text="@string/app_name" />
+        android:padding="12dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/btn_timer_observable"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.512"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_standard_observable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:text="Rx Just"
+
+        app:layout_constraintBottom_toTopOf="@id/btn_standard_retrofit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/btn_standard_retrofit"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_timer_observable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:text="Rx Timer"
+
+        app:layout_constraintBottom_toTopOf="@id/btn_rxjava_retrofit"
+        app:layout_constraintStart_toStartOf="@id/btn_rxjava_retrofit"
+        app:layout_constraintEnd_toEndOf="@id/btn_rxjava_retrofit"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_standard_retrofit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Retrofit"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_rxjava_retrofit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+
+        android:text="Retrofit RX"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_standard_retrofit"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
