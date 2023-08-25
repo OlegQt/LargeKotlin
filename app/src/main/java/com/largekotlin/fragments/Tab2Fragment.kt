@@ -26,6 +26,7 @@ class Tab2Fragment : Fragment() {
 
         binding.btnStandardRetrofit.setOnClickListener {
             (requireActivity() as MessageProvider).showMessage("Standard retrofit")
+            vm.StandardRetrofit()
         }
 
         binding.btnRxjavaRetrofit .setOnClickListener {

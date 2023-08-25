@@ -5,6 +5,8 @@ import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.largekotlin.data.RetrofitClient
+import com.largekotlin.util.MessageProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
@@ -65,6 +67,13 @@ class Tab2ViewModel : ViewModel() {
                 { addStringRow("Task completed\n") })
     }
 
+    fun StandardRetrofit(){
+        val quote = RetrofitClient().doRequest(object :MessageProvider{
+            override fun showMessage(message: String) {
+                _txtInput.value = message
+            }
+        })
+    }
 
     private fun addStringRow(stringRow: String) {
         _txtInput.value = _txtInput.value.plus("\n$stringRow")
