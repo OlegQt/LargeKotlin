@@ -1,16 +1,17 @@
 package com.largekotlin.viewmodels
 
+import RetrofitClient
 import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.largekotlin.data.RetrofitClient
 import com.largekotlin.util.MessageProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
-import kotlin.math.cos
 import kotlin.random.Random
 
 class Tab2ViewModel : ViewModel() {
@@ -24,7 +25,21 @@ class Tab2ViewModel : ViewModel() {
 
     val txtColor = MutableLiveData<Int>()
 
+    val txtRxQuote = MutableLiveData<String>()
+
     init {}
+
+    fun rxRetrofit() {
+        val res = RetrofitClient().doRxRequest()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                txtRxQuote.value = it.quote.body
+            },
+                {
+
+                })
+    }
 
     fun makeTimerObservable() {
         if(timerDisposable!=null) handler.post { timerDisposable?.dispose() }

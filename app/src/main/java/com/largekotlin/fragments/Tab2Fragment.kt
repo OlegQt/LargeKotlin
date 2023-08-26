@@ -27,6 +27,8 @@ class Tab2Fragment : Fragment() {
 
         binding.btnTimerObservable.setOnClickListener { vm.makeTimerObservable() }
 
+        binding.btnRxjavaRetrofit.setOnClickListener { vm.rxRetrofit() }
+
         // Inflate the layout for this fragment
         return _binding?.root
     }
@@ -44,6 +46,10 @@ class Tab2Fragment : Fragment() {
 
         vm.rxTimer.observe(viewLifecycleOwner) {
             binding.txtRxTimer.setText(it.toString())
+        }
+
+        vm.txtRxQuote.observe(viewLifecycleOwner) {
+            binding.txtRetrofitRxjava.setText(it)
         }
 
     }
