@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.largekotlin.databinding.FragmentMainBinding
 import com.largekotlin.fragments.Tab1Fragment
 import com.largekotlin.fragments.Tab2Fragment
+import com.largekotlin.fragments.Tab3Fragment
 
 
 class MainFragment : Fragment() {
@@ -35,6 +36,7 @@ class MainFragment : Fragment() {
 
         fragmentMap["Thread"] = Tab1Fragment()
         fragmentMap["RxJava"] = Tab2Fragment()
+        fragmentMap["Coroutines"] = Tab3Fragment()
 
         // Инициализация адаптера для TabLayout и связь со списком фрагментов
         val adapter = FragmentAdapter(requireActivity(), fragmentList = fragmentMap.values.toList())
