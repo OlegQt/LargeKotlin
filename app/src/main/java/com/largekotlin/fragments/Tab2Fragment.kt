@@ -1,6 +1,5 @@
 package com.largekotlin.fragments
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,18 +21,9 @@ class Tab2Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTab2Binding.inflate(inflater,container,false)
+        _binding = FragmentTab2Binding.inflate(inflater, container, false)
 
-        binding.btnStandardRetrofit.setOnClickListener {
-            (requireActivity() as MessageProvider).showMessage("Standard retrofit")
-            vm.StandardRetrofit()
-        }
-
-        binding.btnRxjavaRetrofit .setOnClickListener {
-            (requireActivity() as MessageProvider).showMessage("JavaRx retrofit")
-        }
-
-        binding.btnStandardObservable.setOnClickListener { vm.makeStandardObservable() }
+        binding.btnStandardRetrofit.setOnClickListener { vm.standardRetrofit() }
 
         binding.btnTimerObservable.setOnClickListener { vm.makeTimerObservable() }
 
@@ -44,12 +34,16 @@ class Tab2Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.txtInput.observe(viewLifecycleOwner){
-            binding.txtInput.text = it
+        vm.txtInput.observe(viewLifecycleOwner) {
+            binding.txtRetrofitEnqueue.setText(it)
         }
 
-        vm.txtColor.observe(viewLifecycleOwner){color ->
-            binding.txtInput.setBackgroundColor(color)
+        vm.txtColor.observe(viewLifecycleOwner) { color ->
+            //binding.txtInput.setBackgroundColor(color)
+        }
+
+        vm.rxTimer.observe(viewLifecycleOwner) {
+            binding.txtRxTimer.setText(it.toString())
         }
 
     }
@@ -60,7 +54,7 @@ class Tab2Fragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding=null
+        _binding = null
     }
 
     companion object {

@@ -9,30 +9,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/txt_input"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-
-        android:enabled="true"
-        android:padding="12dp"
-
-        app:layout_constraintBottom_toTopOf="@+id/btn_timer_observable"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512"
-        tools:layout_editor_absoluteX="12dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_standard_observable"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:text="Rx Just"
-
-        app:layout_constraintBottom_toTopOf="@id/btn_standard_retrofit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/btn_standard_retrofit"/>
+    <!-- TODO: RX_TIMER -->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_timer_observable"
@@ -41,9 +18,71 @@
 
         android:text="Rx Timer"
 
-        app:layout_constraintBottom_toTopOf="@id/btn_rxjava_retrofit"
-        app:layout_constraintStart_toStartOf="@id/btn_rxjava_retrofit"
-        app:layout_constraintEnd_toEndOf="@id/btn_rxjava_retrofit"/>
+        app:layout_constraintBottom_toBottomOf="@+id/filledTextField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/filledTextField" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+
+        android:hint="RxJava Observable.interval"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_timer_observable"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_rx_timer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+
+            android:textStyle="bold"
+            android:text="@string/app_name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- TODO: RETROFIT enqueue -->
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/rx_divider_A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:layout_marginTop="148dp"
+        app:layout_constraintTop_toBottomOf="@id/filledTextField"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextFieldB"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="12dp"
+
+        android:hint="Retrofit.enqueue -> consumer"
+
+        app:layout_constraintTop_toTopOf="@id/rx_divider_A"
+        tools:layout_editor_absoluteY="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_retrofit_enqueue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:focusable="false"
+            android:inputType="none"
+            android:text="@string/app_name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_standard_retrofit"
@@ -52,20 +91,60 @@
 
         android:text="Retrofit.enqueue"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_marginTop="12dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filledTextFieldB" />
+
+    <!-- TODO: RETROFIT RX JAVA -->
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/rx_divider_B"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:layout_marginTop="148dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_standard_retrofit"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextFieldC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="12dp"
+
+        app:boxBackgroundColor="@color/teal_200"
+        android:hint="Retrofit.rxJava"
+
+        app:layout_constraintTop_toBottomOf="@id/rx_divider_B"
+        tools:layout_editor_absoluteY="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_retrofit_rxjava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:focusable="false"
+            android:inputType="none"
+            android:text="@string/app_name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_rxjava_retrofit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
 
-        android:text="Retrofit RX"
+        android:text="Retrofit.rxJava"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_standard_retrofit"/>
+        android:layout_marginTop="12dp"
 
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filledTextFieldC" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
