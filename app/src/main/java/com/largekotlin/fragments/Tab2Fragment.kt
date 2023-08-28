@@ -25,7 +25,7 @@ class Tab2Fragment : Fragment() {
 
         binding.btnStandardRetrofit.setOnClickListener { vm.standardRetrofit() }
 
-        binding.btnTimerObservable.setOnClickListener { vm.makeTimerObservable() }
+        binding.btnThreadStart.setOnClickListener { vm.makeTimerObservable() }
 
         binding.btnRxjavaRetrofit.setOnClickListener { vm.rxRetrofit() }
 

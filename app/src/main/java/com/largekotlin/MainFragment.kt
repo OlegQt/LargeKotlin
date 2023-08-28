@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
         }.attach()
 
         // Go to second Tab
-        binding.tabLayout.selectTab(binding.tabLayout.getTabAt(1))
+        binding.tabLayout.selectTab(binding.tabLayout.getTabAt(2))
 
     }
 
